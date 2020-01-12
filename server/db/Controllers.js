@@ -121,8 +121,6 @@ const getFaves = (req, res, next) => {
   })
 }
 
-
-
 //Update User
 //! UPDATE
 const updateUser = function (req, res, next) {
@@ -195,14 +193,12 @@ const createPost = function (req, res) {
   let postTypeId = null;
   let postHoodId = null;
   let postUserId = null;
-  //comment this line out
   let upOrDown = 'up';
   Hood.findOrCreate({
     where:{
     hoodName: hoodName,
     upOrDown: upOrDown,
   }})
-  // .catch((err)=>{ err })
   .then((tuple) => {
     const createdHoodObj = tuple[0];
     console.log(createdHoodObj);
@@ -214,7 +210,6 @@ const createPost = function (req, res) {
         username: username,
     }})
   })
-  // .catch((err)=>{err; debugger;})
     //should check for use userid
   .then((tuple) => {
     const createdUserObj = tuple[0];
@@ -239,15 +234,15 @@ const createPost = function (req, res) {
       userId: postUserId,
     });
   })
-  // .then((data) => {
-  //   data;
-  //   res.status(201)
-  //     .json({
-  //       status: 'success',
-  //       data: data,
-  //       message: 'Created a new Post!'
-  //     });
-  // })
+  .then((data) => {
+    data;
+    res.status(201)
+      .json({
+        status: 'success',
+        data: data,
+        message: 'Created a new Post!'
+      });
+  })
   .catch((err) => {
     res.status(400);
     console.log('There was an error creating that post!', err);
@@ -256,7 +251,7 @@ const createPost = function (req, res) {
 };
 
 const getSinglePost = function (req, res) {
-  debugger;
+
   const id = req.params.postId;
   Post.findOne({
     where: {
@@ -345,7 +340,7 @@ const getFavePosts = function (req, res, next) {
 const updatePost = function (req, res, next) {
   console.log(req.body);
   Post.update({
-    favedStatus: false,
+    favedStatus: true,
     }, {
     where: {
       id: req.body.postId
@@ -394,7 +389,6 @@ const createComment = function (req, res) {
       });
     })
     .catch((err) => {
-      debugger;
       res.status(400);
       console.log('There was an error creating that comment!'), err;
       return next();
@@ -464,9 +458,7 @@ const getNeighborhoodsPosts = function(req, res, next) {
     where: {
       hoodName: hoodName,
   }})
-  // .catch((err) => { debugger; })
   .then((hood) => {
-      // debugger;
       postHoodId = hood.dataValues.id;
       return Post.findAll( {where: {
         postHoodId: postHoodId
@@ -475,7 +467,6 @@ const getNeighborhoodsPosts = function(req, res, next) {
   .then((posts)=>{
     res.send(posts);
     posts;
-    debugger;
   })
   .catch((err)=>{
    

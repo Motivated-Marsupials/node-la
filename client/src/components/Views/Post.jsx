@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Post = ({ changeView, currentPost, createComment }) => {
+const Post = ({ changeView, currentPost, createComment, toggleFavorite }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -54,17 +54,16 @@ const Post = ({ changeView, currentPost, createComment }) => {
             <Typography variant="h6" color="primary" style={{ fontWeight: "bolder", textAlign: "right" }}>{currentPost.username}</Typography>
             <Typography variant="subtitle2" color="textSecondary" style={{ textAlign: "right" }}>{moment(currentPost.createdAt).fromNow()}</Typography>
             <Typography variant="h6">{currentPost.postBody}</Typography>
+            <FavoriteBorderIcon
+                    size="medium"
+                    onClick={() => {
+                      toggleFavorite(currentPost.id, currentPost.username);
+                    }}/>
           </Paper>
         </Grid>
         {/* Button with dialog box for adding comments*/}
         <Comment currentPost={currentPost} createComment={createComment} />
         {/* Comment layout goes here */}
-        <Grid item xs={12}>
-          <Paper className={classes.comment}>
-            <Typography variant="h6" color="primary" style={{ fontWeight: "bolder" }}>Username</Typography>
-            <Typography variant="body2">Comment 1 placeholder text</Typography>
-          </Paper>
-        </Grid>
       </Grid>
     </div>
   );

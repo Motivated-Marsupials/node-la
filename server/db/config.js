@@ -8,7 +8,7 @@ dotenv.config();
 //   host: 'localhost',
 //   password: '',
 //   database: 'nodela',
-//   dialect: 'mariadb',
+//   dialect: 'mysql',
 //   dialectOptions: {
 //     connectionTimeout: 1000
 //   }
@@ -17,7 +17,7 @@ dotenv.config();
 const sqlConfig = {
   user: 'root',
   host: 'localhost',
-  password: '',
+  password: '325425',
   dialect: 'mysql',
   database: 'nodela',
   // host: `/cloudsql/${CLOUD_SQL_INSTANCE_CONNECTION_NAME}`,

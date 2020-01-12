@@ -55,7 +55,6 @@ const Neighbor = ({ neighbor, neighborPosts, getNeighbors, toggleFavorite }) => 
                     {post.title}
                   </Typography>
                   <Typography variant="body2">{post.body}</Typography>
-
                   <Typography variant="body2">{post.postBody}</Typography>
                   {/* <div>
                     {post.body !== post.body
@@ -65,7 +64,6 @@ const Neighbor = ({ neighbor, neighborPosts, getNeighbors, toggleFavorite }) => 
                       id={post.id}
                       onClick={() => {
                         toggleFavorite(post.body, neighbor);
-                        debugger;
                       }}
                     />}
                   </div> */}

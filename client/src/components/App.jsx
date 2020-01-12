@@ -267,7 +267,6 @@ class App extends React.Component {
     return axios
       .get(`/users/${neighbor}`)
       .then(response => {
-        debugger
         const neighbor = response.data.data[0].username;
         this.setState({
           neighbor
@@ -280,7 +279,6 @@ class App extends React.Component {
             }
           })
           .then(response => {
-            debugger;
             const neighborPosts = response.data.data;
             console.log(neighborPosts);
             this.setState({
@@ -352,10 +350,8 @@ class App extends React.Component {
     axios
       .patch("users/hood", { username, newHood })
       .then(response => {
-        console.log(response);
       })
       .catch(error => {
-        console.log(error);
       });
   }
 
@@ -368,7 +364,7 @@ class App extends React.Component {
       alert("This post has been faved!!");
     })
     .catch(err => {
-      console.log('err with toggle favorite', err)
+      console.log('err with toggle favorite')
     })
 
     
@@ -437,6 +433,7 @@ class App extends React.Component {
             case "posts":
               return loggedIn ? (
                 <Posts
+                  toggleFavorite={this.toggleFavorite}
                   changeView={this.changeView}
                   loggedIn={this.state.loggedIn}
                   createPost={this.createPost}
@@ -474,6 +471,7 @@ class App extends React.Component {
             case "userPosts":
               return loggedIn ? (
                 <UserPosts
+                  toggleFavorite={this.toggleFavorite}
                   changeCurrentPost={this.changeCurrentPost}
                   changeView={this.changeView}
                   userPosts={this.state.userPosts}
@@ -584,6 +582,7 @@ class App extends React.Component {
             // post view shows the post clicked on with it's comments
             case 'post':
               return <Post
+              toggleFavorite={this.toggleFavorite}
               changeView={this.changeView}
               currentPost={this.state.currentPost}
               createComment={this.createComment}
